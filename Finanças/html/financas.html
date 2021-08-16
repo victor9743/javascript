@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/fontawesome-5/css/all.css">
+    <title>Finanças</title>
+
+</head>
+<body>
+    <!-- Logo -->
+        <header class="navbar-nav bg-warning expand-md p-5 text-center text-light" style="height: 300px;">
+            <h2 class="display-4 p-auto text-center">
+                Finanças <i class="fas fa-university"></i>
+            </h2>
+            
+        </header>
+    <div class="row container ml-auto mr-auto  text-light valores">
+
+        <!-- Entradas -->
+              <div class="col-lg-4 mt-2">
+
+                    <div class="m-3 bg-success p-2 row valores-item" style="height: 140px">
+                        <span class="col-6">Entradas</span><i class="fas fa-arrow-circle-up fa-2x col-6 text-right"></i>
+                        <div id=valor class="text-right pt-5 col-12" >
+                            
+                                <strong><label id="entradas" style="font-size: 20pt;">R$ 0,00 </label></strong>
+                        
+                        </div>
+                        
+
+                    </div>
+            
+            </div>
+        <!-- Saidas -->
+            <div class="col-lg-4 mt-2">
+
+                <div class="m-3 bg-danger p-2 row  valores-item" style="height: 140px">
+                    <h5 class="col-6">Saídas</h5><i class="fas fa-arrow-circle-down fa-2x col-6 text-right"></i>
+                    <div id=valor class="text-right pt-5 col-12">
+                        <strong><label id="saidas" style="font-size: 20pt;">R$ 0,00 </label></strong>
+                    </div>
+
+                </div>
+               
+            
+            </div>
+        <!-- Saldo -->
+            <div class="col-lg-4 mt-2">
+
+                <div class="m-3 bg-primary p-2 row  valores-item" style="height: 140px">
+                    <span class="col-6">Saldo</span><i class="fas fa-dollar-sign fa-2x col-6 text-right"></i>
+                    <div id=valor class="text-right pt-5 col-12">
+                       <strong> <label id="saldo" style="font-size: 20pt;">R$ 0,00</label></strong>
+                    </div>
+
+                </div>
+              
+            </div>
+        
+            <div class="col-12 text-right active mb-3 pt-5 pb-5">
+               
+                    <button class="btn btn-success mr-3" id="adicionar"><i class="fas fa-plus-circle"></i> Nova Transação</button>
+                   
+                    <!--<div class="input-group input-group-sm container mt-3 ">
+                        <input type="text" class="form-control col-5 " placeholder="Digite para pesquisar..." id="pesquisa"><i class="fas fa-search rounded-end input-group-text" id="busca"></i>
+                    </div>-->
+                    
+
+        
+            </div>
+
+    </div> 
+
+    <!-- caixa para adicionar um elemento-->
+
+    <div class="modal" tabindex="-1" role="dialog" id="janela">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+     
+                <!-- Titulo -->
+                <div class="modal-header">
+                <h5 class="modal-title">Nova Transação</h5>
+                
+                </div>
+           
+                <!-- Corpo -->
+                <div class="modal-body">
+
+                    <!--<div id="novo_id" class="row container mb-3 col-2 text-center">
+
+                    </div>-->
+
+                    <!-- Descrição -->
+                    <div class="input-group mb-3">   
+                        <input class="form-control col-12" type="text" placeholder="Descrição" id="descricao">
+                    </div>
+
+
+                    <!-- valor -->
+                    <label for="valor_transacao">Valor</label><br>
+                    <div class="input-group mb-1">
+                        <input class="form-control col-12" type="number" placeholder="0,00" id="valor_transacao">
+                        
+                    </div>
+                    <p style="font-size: 12px;" class="text-danger">* Use o sinal - (negativo) para dispesas e (virgula) para casas decimais</p>
+                
+                    <!-- Data -->
+                    <div class="input-group mb-3 row container">
+                        
+                            <label for="data_transacao">Data da transação</label>
+                            <div class="input-group mb-1">
+                                <input class="form-control col-8" type="date" id="data_transacao">
+                            </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                    
+                        <button id="fechar" class="col-5 btn btn-outline-danger m-auto">Cancelar</button>
+                        <button id="salvar" class="col-5 btn btn-success m-auto">Salvar</button>
+                
+                    </div>
+                    
+                </div>
+          
+        
+          </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Tabela -->
+                <table class="table table-bordered table-responsive-md" id="tabela" >  
+                    <thead class="bg-warning text-light">
+                        <tr class="text-center">
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                            <th>Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo_tabela">
+            
+                    </tbody>
+                </table>    
+    </div>
+
+
+    
+     <!-- JavaScript Bundle with Popper -->
+   
+       
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <script src="../js/bootstrap.min.js"> </script>
+
+    <script src="../js/scripts1.js"></script>
+
+</body>
+</html>
